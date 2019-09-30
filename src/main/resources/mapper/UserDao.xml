@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grgbanking.dao.UserDao">
+	<select id="getUsersByGroupName" parameterType="String" resultType="com.grgbanking.entity.User">
+		select u.* 
+		from user u join user_group ug 
+		on u.id=ug.userId 
+		join group1 g 
+		on g.id=ug.groupId
+		where g.groupName like concat(concat('%',#{groupName}),'%')
+	</select>
+</mapper>
